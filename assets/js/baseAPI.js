@@ -11,4 +11,12 @@ $.ajaxPrefilter(function (params) {
     // console.log(params)
 
     params.url = baseURL + params.url
+
+
+    //对需要权限的接口配置头信息
+    if (params.url.indexOf('/my/') !== -1) {
+        params.headers = {
+            Authorization: localStorage.getItem('token') || ""
+        }
+    }
 })
